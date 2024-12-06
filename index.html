@@ -27,23 +27,25 @@
           </div>
           <span id="email-id">Invalid email</span>
         </div>
+
         <div>
           <p>Password</p>
           <div class="input-div">
             <img width="16" src="./images/passPIc.png">
-            <input id="passValue" type="text" placeholder="Type your password" onInput="loginForm('password',event)">
+            <input id="passValue" type="password" placeholder="Type your password" onInput="loginForm('password',event)">
+            <img width="16" src="./images/visible-pic.png" onclick="visiblePass(event)" onmouseover="hover(event)">
           </div>
           <span id="pass-id">Atleat 10 digit</span>
           <p class="forget-para">Forget Password?</p>
         </div>
         <button>Login</button>
 
-        <h4 class="h66"><a href="./SignUp/SignUp.html">SIGN UP</a></h4>
+        <h4 class="h66" onclick="window.location.assign('./signup/signup.html')">Sign Up</h4>
       </form>
     </div>
   </main>
 
-  <script src="./script/app.js"></script>
+  <script src="./app.js"></script>
 
 </body>
 

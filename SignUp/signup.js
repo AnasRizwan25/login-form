@@ -1,12 +1,17 @@
+
+var isLogin = JSON.parse(localStorage.getItem("login"));
+if (isLogin) {
+  window.location.replace('../dashboard/dashboard.html');
+
+}
+
 let data = JSON.parse(localStorage.getItem('data')) || [];
 
 let emailFlag = false;
+let emailDoubleFlag = true;
 let passFlag = false;
 let nameFlag = false;
 let genderFlag = false;
-
-let emailInput = false;
-let passInput = false;
 
 
 function validate(value, e) {
@@ -92,67 +97,35 @@ function formSubmit(e) {
   let passValue = document.querySelector('#passValue').value;
   let emailValue = document.querySelector('#emailValue').value;
   let nameValue = document.querySelector('#nameValue').value;
-  let genderValue = document.querySelector('#genderValue').value;
+  let genderValue = document.querySelector('#genderValue').value.toLowerCase();
   let cityValue = document.querySelector('#cityValue').value;
 
-  if (emailFlag && nameFlag && genderFlag && passFlag) {
+  let emailCheck = document.querySelector('#email-id');
+  emailCheck.style.display = 'none'; 
+
+
+  for (let i = 0; i < data.length; i++) {
+    if (emailValue === data[i].email) {
+      emailCheck.innerText = 'Already used';
+      emailCheck.style.display = 'block';
+      emailDoubleFlag = false; 
+      return; 
+    }
+    emailDoubleFlag = true;
+  }
+
+
+  if (emailFlag && nameFlag && genderFlag && passFlag && emailDoubleFlag) {
     data = [...data, {
-      emailValue, nameValue, genderValue, cityValue, passValue,
-    }]
-    console.log(data);
-
+      email: emailValue,
+      name: nameValue,
+      gender: genderValue,
+      city: cityValue,
+      password: passValue,
+    }];
     localStorage.setItem('data', JSON.stringify(data));
+
+    // Redirect to the next page (dashboard or other page)
+    window.location.replace("../index.html");
   }
-}
-
-
-
-function loginForm(value, e) {
-
-  let email = document.querySelector('#email-id');
-  let pass = document.querySelector('#pass-id');
-
-  if (value === 'email') {
-    for (let i = 0; i < e.target.value.length; i++) {
-      if (e.target.value.indexOf('@') === -1) {
-        email.style.display = 'block';
-        emailInput = false;
-        return;
-      }
-      email.style.display = 'none';
-      emailInput = true;
-    }
-  }
-  if (value === 'password') {
-    for (let i = 0; i < e.target.value.length; i++) {
-      if (e.target.value.length < 10) {
-        pass.style.display = 'block';
-        passInput = false;
-        return;
-      }
-      pass.style.display = 'none';
-      passInput = true;
-    }
-  }
-}
-
-function checkDate(e) {
-  e.preventDefault();
-
-  let emailValue = document.querySelector('#emailValue').value;
-  let passValue = document.querySelector('#passValue').value;
-
-  if (emailInput && passInput) {
-    for (let i = 0; i < data.length; i++) {
-      let value = data[i];
-      if (value.emailValue === emailValue && value.passValue === passValue) {
-        alert('Data found');
-        return;
-      }
-      alert('data not found');
-    }
-
-  }
-
-
 }
