@@ -1,6 +1,6 @@
 var isLogin = JSON.parse(localStorage.getItem("login"));
 if (isLogin) {
-  window.location.replace('../dashboard/index.html');
+  window.location.replace('./dashboard.html');
 
 }
 

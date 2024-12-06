@@ -5,7 +5,7 @@ function onOut(e){
 
   if(isLogin){
     localStorage.removeItem('login');
-    window.location.replace("../index.html");
+    window.location.replace("./index.html");
   }
   console.log(isLogin)
 }
