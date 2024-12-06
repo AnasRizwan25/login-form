@@ -5,7 +5,7 @@ let passInput = false;
 
 var isLogin = JSON.parse(localStorage.getItem("login"));
 if (isLogin) {
-  window.location.replace('../dashboard/dashboard.html');
+  window.location.replace('../dashboard/index.html');
 }
 
 function loginForm(value, e) {
@@ -74,7 +74,7 @@ function checkDate(e) {
   if (isLogin) {
     console.log(isLogin);
     localStorage.setItem('login', JSON.stringify(isLogin));
-    window.location.replace('../dashboard/dashboard.html');
+    window.location.replace('../dashboard/index.html');
   }
 
 }
