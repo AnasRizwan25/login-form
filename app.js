@@ -4,7 +4,6 @@ let passInput = false;
 
 
 var isLogin = JSON.parse(localStorage.getItem("login"));
-console.log(isLogin)
 if (isLogin) {
   window.location.replace('../dashboard/dashboard.html');
 }
@@ -53,7 +52,6 @@ function visiblePass(e) {
 
 }
 
-console.log(data)
 
 function searchData(email, password) {
   for (let i = 0; i < data.length; i++) {

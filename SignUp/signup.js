@@ -1,4 +1,3 @@
-
 var isLogin = JSON.parse(localStorage.getItem("login"));
 if (isLogin) {
   window.location.replace('../dashboard/dashboard.html');
@@ -124,8 +123,6 @@ function formSubmit(e) {
       password: passValue,
     }];
     localStorage.setItem('data', JSON.stringify(data));
-
-    // Redirect to the next page (dashboard or other page)
     window.location.replace("../index.html");
   }
 }
