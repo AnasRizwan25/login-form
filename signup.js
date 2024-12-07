@@ -123,6 +123,6 @@ function formSubmit(e) {
       password: passValue,
     }];
     localStorage.setItem('data', JSON.stringify(data));
-    window.location.replace("../index.html");
+    window.location.replace("./index.html");
   }
 }
